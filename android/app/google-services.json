@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "920794796222",
+    "firebase_url": "https://prefab-century-286405.firebaseio.com",
+    "project_id": "prefab-century-286405",
+    "storage_bucket": "prefab-century-286405.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920794796222:android:1c30eb75d12683fc4d8eef",
+        "android_client_info": {
+          "package_name": "com.aidenpearce01.flutter_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "920794796222-br8h5vj5fa8nflmilpkfbetasv5bfmoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFUMU37lWq2kvq-eGnkJJ1vCM2wyzxgu4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "920794796222-br8h5vj5fa8nflmilpkfbetasv5bfmoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
