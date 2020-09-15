@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/service/authservice.dart';
 
@@ -63,11 +65,15 @@ class _RegisterState extends State<Register> {
                       borderSide: BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(25.7),
                     ),
-                    enabledBorder: UnderlineInputBorder(
+                    enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
                       borderRadius: BorderRadius.circular(25.7),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.redAccent),
+                      borderRadius: BorderRadius.circular(25.7),
+                    ),
+                    errorBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.redAccent),
                       borderRadius: BorderRadius.circular(25.7),
                     ),
@@ -112,11 +118,15 @@ class _RegisterState extends State<Register> {
                         borderSide: BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.circular(25.7),
                       ),
-                      enabledBorder: UnderlineInputBorder(
+                      enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(25.7),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.redAccent),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                      errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.redAccent),
                         borderRadius: BorderRadius.circular(25.7),
                       ),

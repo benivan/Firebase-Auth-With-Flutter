@@ -63,11 +63,15 @@ class _SignInState extends State<SignIn> {
                       borderSide: BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(25.7),
                     ),
-                    enabledBorder: UnderlineInputBorder(
+                    enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
                       borderRadius: BorderRadius.circular(25.7),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.redAccent),
+                      borderRadius: BorderRadius.circular(25.7),
+                    ),
+                    errorBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.redAccent),
                       borderRadius: BorderRadius.circular(25.7),
                     ),
@@ -112,11 +116,15 @@ class _SignInState extends State<SignIn> {
                         borderSide: BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.circular(25.7),
                       ),
-                      enabledBorder: UnderlineInputBorder(
+                      enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(25.7),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.redAccent),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                      errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.redAccent),
                         borderRadius: BorderRadius.circular(25.7),
                       ),
