@@ -29,6 +29,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 TextFormField(
                   decoration: InputDecoration(
+                    // ####### Take A LOOK ######
                     contentPadding: const EdgeInsets.only(
                         left: 14.0, bottom: 8.0, top: 8.0),
                     focusedBorder: OutlineInputBorder(
@@ -66,7 +67,7 @@ class _SignInState extends State<SignIn> {
                   onChanged: (val) {},
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 30.0,
                 ),
                 TextFormField(
                   decoration: InputDecoration(
@@ -101,9 +102,34 @@ class _SignInState extends State<SignIn> {
                   },
                   // ObscureText hide the inputs as ******* Like password
                   obscureText: true,
-                  // Same as Upper Functionh,
                   onChanged: (val) {},
-                )
+                ),
+                SizedBox(
+                  height: 50.0,
+                ),
+
+                //******LOGIN BUTTON******
+                Container(
+                    height: 40.0,
+                    width: 100.0,
+                    child: Material(
+                      borderRadius: BorderRadius.circular(20.0),
+                      shadowColor: Colors.greenAccent,
+                      color: Colors.green,
+                      elevation: 2.0,
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Center(
+                          child: Text(
+                            'LOGIN',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Montserrat'),
+                          ),
+                        ),
+                      ),
+                    )),
               ],
             ),
           )),
