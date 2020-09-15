@@ -8,9 +8,9 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black54,
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.black54,
         elevation: 0.0,
         title: Text('Home'),
         // used to add Widget In AppBar
@@ -19,9 +19,25 @@ class Home extends StatelessWidget {
               onPressed: () async {
                 await _auth.signOut();
               },
-              icon: Icon(Icons.person_add_disabled),
-              label: Text('Logout'))
+              icon: Icon(Icons.person_add_disabled,
+              color: Colors.red,),
+              label: Text('Logout',
+              style: TextStyle(color: Colors.red),))
         ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical:50.0 ),
+        child: Center(
+          child: Container(
+            child: Column(
+              children: [
+
+                FlatButton.icon(onPressed: null, icon: Icon(Icons.person,color: Colors.amber,size: 50.0,), label: Text(''))
+              ],
+            ),
+
+          ),
+        ),
       ),
     );
   }

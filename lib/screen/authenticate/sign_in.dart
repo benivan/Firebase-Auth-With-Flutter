@@ -14,10 +14,12 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final AutService _auth = AutService();
+  final _formkey = GlobalKey<FormState>(); // Create a global key to keep state of our form
 
   // Text Field State
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +48,11 @@ class _SignInState extends State<SignIn> {
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
           child: Form(
+            key: _formkey,  // This Tell State of our form globally later we can validate our form using this key
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 70.0,
+                  height: 50.0,
                 ),
                 TextFormField(
                   decoration: InputDecoration(
@@ -62,6 +65,10 @@ class _SignInState extends State<SignIn> {
                     ),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(25.7),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.redAccent),
                       borderRadius: BorderRadius.circular(25.7),
                     ),
                     icon: Icon(
@@ -83,7 +90,7 @@ class _SignInState extends State<SignIn> {
                   validator: (value) {
                     if (value.isEmpty) {
                       // ignore: missing_return
-                      return 'Email';
+                      return 'Enter Your Email';
                     }
                     return null;
                   },
@@ -109,6 +116,11 @@ class _SignInState extends State<SignIn> {
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(25.7),
                       ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.redAccent),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+
                       icon: Icon(
                         Icons.vpn_key_sharp,
                         color: Colors.orangeAccent[100],
@@ -123,11 +135,12 @@ class _SignInState extends State<SignIn> {
                       focusColor: Colors.grey),
                   style: TextStyle(color: Colors.white),
                   validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Password';
+                    if (value.length < 6) {
+                      return 'password must be at least 6 characters long';
                     }
                     return null;
                   },
+
                   // ObscureText hide the inputs as ******* Like password
                   obscureText: true,
                   onChanged: (val) {
@@ -151,13 +164,18 @@ class _SignInState extends State<SignIn> {
                       elevation: 2.0,
                       child: GestureDetector(
                         onTap: () async {
-
-                          print(email);
-                          print(password);
+                          if( _formkey.currentState.validate()){
+                            dynamic dynamicUser = await _auth.signInWithEmailAndPassword(email, password);
+                            if(dynamicUser == null){
+                              setState(() {
+                                error = 'User Not Found Enter A valid Email and Password';
+                              });
+                            }
+                          }
                         },
                         child: Center(
                           child: Text(
-                            'LOGIN',
+                            'LOGIN',                          // Button is Only Working on text field nol all button is clickable
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

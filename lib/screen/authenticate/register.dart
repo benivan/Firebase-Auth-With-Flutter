@@ -12,10 +12,12 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final AutService _auth = AutService();
+  final _formkey = GlobalKey<FormState>();
 
   // Text Field State
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +48,11 @@ class _RegisterState extends State<Register> {
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
           child: Form(
+            key:_formkey,
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 70.0,
+                  height: 50.0,
                 ),
                 TextFormField(
                   decoration: InputDecoration(
@@ -62,6 +65,10 @@ class _RegisterState extends State<Register> {
                     ),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(25.7),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.redAccent),
                       borderRadius: BorderRadius.circular(25.7),
                     ),
                     icon: Icon(
@@ -83,7 +90,7 @@ class _RegisterState extends State<Register> {
                   validator: (value) {
                     if (value.isEmpty) {
                       // ignore: missing_return
-                      return 'Email';
+                      return 'Enter Your Email';
                     }
                     return null;
                   },
@@ -109,6 +116,10 @@ class _RegisterState extends State<Register> {
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(25.7),
                       ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.redAccent),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
                       icon: Icon(
                         Icons.vpn_key_sharp,
                         color: Colors.orangeAccent[100],
@@ -123,8 +134,8 @@ class _RegisterState extends State<Register> {
                       focusColor: Colors.grey),
                   style: TextStyle(color: Colors.white),
                   validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Password';
+                    if (value.length <6) {
+                      return 'password must be at least 6 characters long';
                     }
                     return null;
                   },
@@ -151,10 +162,14 @@ class _RegisterState extends State<Register> {
                       elevation: 2.0,
                       child: GestureDetector(
                         onTap: () async {
-                          print("Email = " +
-                              email +
-                              "From Register Password = " +
-                              password);
+                          if(_formkey.currentState.validate()){
+                            dynamic dynamicUser = await _auth.registerWithEmailAndPassword(email, password);
+                            if(dynamicUser == null){
+                              setState(() {
+                                error = 'Not A valid User';
+                              });
+                            }
+                          }
                         },
                         child: Center(
                           child: Text(
