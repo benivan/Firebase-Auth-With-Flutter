@@ -1,18 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/screen/authenticate/register.dart';
 import 'package:flutter_firebase/service/authservice.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
 
   final Function toggleSignIn;
-  SignIn({this.toggleSignIn});
+  Register({this.toggleSignIn});
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AutService _auth = AutService();
 
   // Text Field State
@@ -26,20 +24,22 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.black54,
         elevation: 0.0,
-        title: Text('SIGN IN',
-        style: TextStyle(letterSpacing: 1.0),),
+        title: Text(
+          'REGISTER',
+          style: TextStyle(letterSpacing: 1.0),
+        ),
         actions: <Widget>[
           FlatButton.icon(
-              onPressed: () {
-                widget.toggleSignIn(); // we cant use this.toggleSignIn tis refers State object and toggleSignIn is Widget object
+              onPressed: (){
+                widget.toggleSignIn();  // we cant use this.toggleSignIn tis refers State object and toggleSignIn is Widget object
               },
               icon: Icon(
-                Icons.person_add,
-                color: Colors.green,
+                Icons.person,
+                color: Colors.lightBlue,
               ),
               label: Text(
-                'Register',
-                style: TextStyle(color: Colors.green),
+                'LogIn',
+                style: TextStyle(color: Colors.lightBlue, letterSpacing: 1.0),
               ))
         ],
       ),
@@ -140,24 +140,25 @@ class _SignInState extends State<SignIn> {
                   height: 50.0,
                 ),
 
-                //******LOGIN BUTTON******
+                //******SIGNIN BUTTON******
                 Container(
                     height: 40.0,
                     width: 100.0,
                     child: Material(
                       borderRadius: BorderRadius.circular(20.0),
-                      shadowColor: Colors.greenAccent,
-                      color: Colors.green,
+                      shadowColor: Colors.blueAccent,
+                      color: Colors.lightBlue,
                       elevation: 2.0,
                       child: GestureDetector(
                         onTap: () async {
-
-                          print(email);
-                          print(password);
+                          print("Email = " +
+                              email +
+                              "From Register Password = " +
+                              password);
                         },
                         child: Center(
                           child: Text(
-                            'LOGIN',
+                            'SIGN UP',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -170,5 +171,6 @@ class _SignInState extends State<SignIn> {
             ),
           )),
     );
+    ;
   }
 }

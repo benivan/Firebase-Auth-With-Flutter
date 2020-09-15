@@ -13,6 +13,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.grey[900],
         elevation: 0.0,
         title: Text('Home'),
+        // used to add Widget In AppBar
         actions: <Widget>[
           FlatButton.icon(
               onPressed: () async {
