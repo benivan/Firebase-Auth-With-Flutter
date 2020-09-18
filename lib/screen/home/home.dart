@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/service/authservice.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class Home extends StatelessWidget {
   final AutService _auth = AutService();
@@ -19,23 +18,32 @@ class Home extends StatelessWidget {
               onPressed: () async {
                 await _auth.signOut();
               },
-              icon: Icon(Icons.person_add_disabled,
-              color: Colors.red,),
-              label: Text('Logout',
-              style: TextStyle(color: Colors.red),))
+              icon: Icon(
+                Icons.person_add_disabled,
+                color: Colors.red,
+              ),
+              label: Text(
+                'Logout',
+                style: TextStyle(color: Colors.red),
+              ))
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical:50.0 ),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
         child: Center(
           child: Container(
             child: Column(
               children: [
-
-                FlatButton.icon(onPressed: null, icon: Icon(Icons.person,color: Colors.amber,size: 50.0,), label: Text(''))
+                FlatButton.icon(
+                    onPressed: null,
+                    icon: Icon(
+                      Icons.person,
+                      color: Colors.amber,
+                      size: 50.0,
+                    ),
+                    label: Text(''))
               ],
             ),
-
           ),
         ),
       ),

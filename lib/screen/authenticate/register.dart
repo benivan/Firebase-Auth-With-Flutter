@@ -1,11 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase/screen/shared/textInputDecorationForEmail.dart';
+import 'package:flutter_firebase/screen/shared/textInputDecorationForPassword.dart';
 import 'package:flutter_firebase/service/authservice.dart';
 
 class Register extends StatefulWidget {
-
   final Function toggleSignIn;
+
   Register({this.toggleSignIn});
 
   @override
@@ -34,8 +36,9 @@ class _RegisterState extends State<Register> {
         ),
         actions: <Widget>[
           FlatButton.icon(
-              onPressed: (){
-                widget.toggleSignIn();  // we cant use this.toggleSignIn tis refers State object and toggleSignIn is Widget object
+              onPressed: () {
+                widget
+                    .toggleSignIn(); // we cant use this.toggleSignIn tis refers State object and toggleSignIn is Widget object
               },
               icon: Icon(
                 Icons.person,
@@ -50,46 +53,14 @@ class _RegisterState extends State<Register> {
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
           child: Form(
-            key:_formkey,
+            key: _formkey,
             child: Column(
               children: <Widget>[
                 SizedBox(
                   height: 50.0,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
-                    // ####### Take A LOOK ######
-                    contentPadding: const EdgeInsets.only(
-                        left: 14.0, bottom: 8.0, top: 8.0),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(25.7),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(25.7),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.redAccent),
-                      borderRadius: BorderRadius.circular(25.7),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.redAccent),
-                      borderRadius: BorderRadius.circular(25.7),
-                    ),
-                    icon: Icon(
-                      Icons.person,
-                      color: Colors.orangeAccent[100],
-                    ),
-                    hintText: 'Enter Your Email',
-                    hintStyle: TextStyle(color: Colors.grey),
-                    labelText: 'Email',
-                    labelStyle: TextStyle(
-                      color: Colors.grey[200],
-                    ),
-                    fillColor: Colors.white,
-                    focusColor: Colors.white,
-                  ),
+                  decoration: textInputDecorationForEmail,
                   // Input Text Color
                   style: TextStyle(color: Colors.white),
 
@@ -111,40 +82,10 @@ class _RegisterState extends State<Register> {
                   height: 30.0,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.only(
-                          left: 14.0, bottom: 8.0, top: 8.0),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(25.7),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(25.7),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.redAccent),
-                        borderRadius: BorderRadius.circular(25.7),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.redAccent),
-                        borderRadius: BorderRadius.circular(25.7),
-                      ),
-                      icon: Icon(
-                        Icons.vpn_key_sharp,
-                        color: Colors.orangeAccent[100],
-                      ),
-                      hintText: 'Enter Password',
-                      labelText: 'Password',
-                      hintStyle: TextStyle(color: Colors.grey),
-                      labelStyle: TextStyle(
-                        color: Colors.grey[200],
-                      ),
-                      fillColor: Colors.grey,
-                      focusColor: Colors.grey),
+                  decoration: textInputDecorationForPassword,
                   style: TextStyle(color: Colors.white),
                   validator: (value) {
-                    if (value.length <6) {
+                    if (value.length < 6) {
                       return 'password must be at least 6 characters long';
                     }
                     return null;
@@ -158,7 +99,7 @@ class _RegisterState extends State<Register> {
                   },
                 ),
                 SizedBox(
-                  height: 50.0,
+                  height: 30.0,
                 ),
 
                 //******SIGNIN BUTTON******
@@ -172,11 +113,12 @@ class _RegisterState extends State<Register> {
                       elevation: 2.0,
                       child: GestureDetector(
                         onTap: () async {
-                          if(_formkey.currentState.validate()){
-                            dynamic dynamicUser = await _auth.registerWithEmailAndPassword(email, password);
-                            if(dynamicUser == null){
+                          if (_formkey.currentState.validate()) {
+                            dynamic dynamicUser = await _auth
+                                .registerWithEmailAndPassword(email, password);
+                            if (dynamicUser == null) {
                               setState(() {
-                                error = 'Not A valid User';
+                                error = 'Please enter a valid email.';
                               });
                             }
                           }
@@ -192,10 +134,19 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
                     )),
+                SizedBox(
+                  height: 12.0,
+                ),
+                Text(
+                  error,
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.red,
+                  ),
+                )
               ],
             ),
           )),
     );
-    ;
   }
 }

@@ -7,22 +7,21 @@ class Authenticate extends StatefulWidget {
   _AuthenticateState createState() => _AuthenticateState();
 }
 
-
 class _AuthenticateState extends State<Authenticate> {
-
   bool setSignIn = true;
 
-  void toggleSignIn(){
+  void toggleSignIn() {
     setState(() {
       setSignIn = !setSignIn;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-     if(setSignIn){
-       return SignIn(toggleSignIn: toggleSignIn);
-     }else{
-       return Register(toggleSignIn: toggleSignIn);
-     }
+    if (setSignIn) {
+      return SignIn(toggleSignIn: toggleSignIn);
+    } else {
+      return Register(toggleSignIn: toggleSignIn);
+    }
   }
 }
