@@ -43,7 +43,6 @@ class AutService {
       return _userFromFirebaseUser(user);
     }catch(e){
       print('error from SinInWithEmailAndPassword');
-      print(e.toString());
       print(e);
       return null;
     }
