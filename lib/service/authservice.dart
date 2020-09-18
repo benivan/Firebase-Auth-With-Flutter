@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_firebase/model/user.dart';
+import 'package:flutter_firebase/screen/shared/database.dart';
 
 class AutService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -20,7 +21,7 @@ class AutService {
     // Create Stream for sending auth that user is Sign In or Out.
     // We Can Also write as Above but we are mapping Firebase user To User Class
     return _auth.onAuthStateChanged
-        // .map((FirebaseUser user) => _userFromFirebaseUser(user));
+    // .map((FirebaseUser user) => _userFromFirebaseUser(user));
         .map((_userFromFirebaseUser)); // Same As Above.
   }
 
@@ -35,29 +36,43 @@ class AutService {
       return null;
     }
   }
+
   // Sign In With Email And Password
-  Future signInWithEmailAndPassword(String email,String password) async {
-    try{
-      AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      AuthResult result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       FirebaseUser user = result.user;
       return _userFromFirebaseUser(user);
-    }catch(e){
+    } catch (e) {
       print('error from SinInWithEmailAndPassword');
       print(e);
       return null;
     }
   }
+
   // Register With Email And Password
-  Future registerWithEmailAndPassword(String email, String password) async{
-    try{
-      AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      FirebaseUser user = result.user;
-      return _userFromFirebaseUser(user);
-    }catch(e){
-      print(e.toString());
-      return null;
-    }
+  Future registerWithEmailAndPassword(String email, String password) async {
+      try {
+        AuthResult result = await _auth.createUserWithEmailAndPassword(
+            email: email, password: password);
+        FirebaseUser user = result.user;
+        // Create a new document for the user with the uid
+        await DatabaseService(uid: user.uid).updateUserDetail(
+            'brewName', '0', 'new user', 100, 'Marlboro Gold', '2');
+        return _userFromFirebaseUser(user);
+      } catch (e) {
+        print(e.toString());
+        return null;
+      }
+
+    // return await _auth.createUserWithEmailAndPassword(email: email, password: password)
+    //     .then((value) {
+    //   FirebaseUser user = value.user;
+    //   return _userFromFirebaseUser(user);
+    // }).catchError((onError) => onError);
   }
+
 
   // Sign Out
   Future signOut() async {

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/screen/shared/loading.dart';
 import 'package:flutter_firebase/screen/shared/textInputDecorationForEmail.dart';
@@ -108,27 +109,27 @@ class _RegisterState extends State<Register> {
                 Container(
                     height: 40.0,
                     width: 100.0,
-                    child: Material(
-                      borderRadius: BorderRadius.circular(20.0),
-                      shadowColor: Colors.blueAccent,
-                      color: Colors.lightBlue,
-                      elevation: 2.0,
-                      child: GestureDetector(
-                        onTap: () async {
-                          if (_formkey.currentState.validate()) {
+                    child: GestureDetector(
+                      onTap: () async {
+                        if (_formkey.currentState.validate()) {
+                          setState(() {
+                            loading = true;
+                          });
+                          dynamic dynamicUser = await _auth
+                              .registerWithEmailAndPassword(email, password);
+                          if (dynamicUser == null) {
                             setState(() {
-                              loading = true;
+                              loading = false;
+                              error = 'Please provide a valid email.' ;
                             });
-                            dynamic dynamicUser = await _auth
-                                .registerWithEmailAndPassword(email, password);
-                            if (dynamicUser == null) {
-                              setState(() {
-                                loading = false;
-                                error = 'Please enter a valid email.';
-                              });
-                            }
                           }
-                        },
+                        }
+                      },
+                      child: Material(
+                        borderRadius: BorderRadius.circular(20.0),
+                        shadowColor: Colors.blueAccent,
+                        color: Colors.lightBlue,
+                        elevation: 2.0,
                         child: Center(
                           child: Text(
                             'SIGN UP',

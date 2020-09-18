@@ -111,27 +111,27 @@ class _SignInState extends State<SignIn> {
                 Container(
                     height: 40.0,
                     width: 100.0,
-                    child: Material(
-                      borderRadius: BorderRadius.circular(20.0),
-                      shadowColor: Colors.greenAccent,
-                      color: Colors.green,
-                      elevation: 2.0,
-                      child: GestureDetector(
-                        onTap: () async {
-                          if (_formkey.currentState.validate()) {
+                    child: GestureDetector(
+                      onTap: () async {
+                        if (_formkey.currentState.validate()) {
+                          setState(() {
+                            loading = true;
+                          });
+                          dynamic dynamicUser = await _auth
+                              .signInWithEmailAndPassword(email, password);
+                          if (dynamicUser == null) {
                             setState(() {
-                              loading = true;
+                              loading =false;
+                              error = 'Email or Password must be wrong.';
                             });
-                            dynamic dynamicUser = await _auth
-                                .signInWithEmailAndPassword(email, password);
-                            if (dynamicUser == null) {
-                              setState(() {
-                                loading =false;
-                                error = 'Email or Password must be wrong.';
-                              });
-                            }
                           }
-                        },
+                        }
+                      },
+                      child: Material(
+                        borderRadius: BorderRadius.circular(20.0),
+                        shadowColor: Colors.greenAccent,
+                        color: Colors.green,
+                        elevation: 2.0,
                         child: Center(
                           child: Text(
                             'LOGIN',
