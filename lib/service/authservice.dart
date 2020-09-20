@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_firebase/model/order.dart';
 import 'package:flutter_firebase/model/user.dart';
-import 'package:flutter_firebase/screen/shared/database.dart';
+import 'file:///C:/Users/itsme/AndroidStudioProjects/flutter_firebase/lib/service/database.dart';
 
 class AutService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -13,7 +15,7 @@ class AutService {
 
   // Stream<FirebaseUser> get user{
   //   return _auth.onAuthStateChanged;
-  // }
+  //}
 
   // Auth Change User Stream
   Stream<User> get user {
