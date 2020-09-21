@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/model/order.dart';
 import 'package:flutter_firebase/screen/home/order_list.dart';
+import 'package:flutter_firebase/screen/home/setting_form.dart';
 import 'package:flutter_firebase/service/authservice.dart';
 import 'package:flutter_firebase/service/database.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +17,7 @@ class Home extends StatelessWidget {
       showModalBottomSheet(context: context, builder: (context) {
         return Container(
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-          child: Text('Bottom Sheet '),
+          child: SettingForm(),
         );
       });
     }
@@ -37,7 +38,7 @@ class Home extends StatelessWidget {
                   await _auth.signOut();
                 },
                 icon: Icon(
-                  Icons.person_add_disabled,
+                  Icons.person,
                   color: Colors.red,
                 ),
                 label: Text(
