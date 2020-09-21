@@ -1,10 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_firebase/model/order.dart';
+import 'package:flutter_firebase/model/user.dart';
 
 class DatabaseService {
   final String uid;
 
   DatabaseService({this.uid});
+
+  // userData From Snapshot
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot){
+    return UserData(
+      uid: uid,
+      name: snapshot.data['name'],
+      brewName: snapshot.data['brewName'],
+      strength:snapshot.data['strength'],
+      sugar: snapshot.data['sugar'],
+      cigaretteBrand: snapshot.data['cigaretteBrand'],
+      cigaretteQuantity: snapshot.data['cigaretteQuantity']
+    );
+
+  }
 
   //Collection Reference
   final CollectionReference brewCollection =
@@ -33,10 +48,16 @@ class DatabaseService {
         cigaretteQuantity: e.data['cigaretteQuantity'] ?? ''
     )).toList();
   }
-  
+
   Stream<List<Order>> get order{
     return brewCollection.snapshots()
     // .map((QuerySnapshot snapshot) => _orderListFromSanpshot(snapshot));  "OR"
     .map(_orderListFromSanpshot);
+  }
+
+  //Get User Doc Stream
+  Stream<UserData> get userData {
+    return brewCollection.document(uid).snapshots()
+    .map(_userDataFromSnapshot);
   }
 }

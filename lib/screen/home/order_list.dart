@@ -13,7 +13,7 @@ class _OrderListState extends State<OrderList> {
   @override
   Widget build(BuildContext context) {
 
-    final orders = Provider.of<List<Order>>(context);  // using data from the stream that in database, and QuerySnapshot is datatype
+    final orders = Provider.of<List<Order>>(context) ?? [];  // using data from the stream that in database, and QuerySnapshot is datatype
 
     return ListView.builder(
         itemCount: orders.length,
