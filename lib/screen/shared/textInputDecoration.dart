@@ -4,22 +4,22 @@ import 'package:flutter/material.dart';
 var textInputDecoration = InputDecoration(
   // ####### Take A LOOK ######
   contentPadding: const EdgeInsets.only(
-      left: 14.0, bottom: 8.0, top: 8.0),
+      left: 14.0, bottom: 2.0, top: 2.0),
   focusedBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.grey),
-    borderRadius: BorderRadius.circular(25.7),
+    borderRadius: BorderRadius.circular(10.0),
   ),
   enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.black),
-    borderRadius: BorderRadius.circular(25.7),
+    borderRadius: BorderRadius.circular(10.0),
   ),
   focusedErrorBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.redAccent),
-    borderRadius: BorderRadius.circular(25.7),
+    borderRadius: BorderRadius.circular(10.0),
   ),
   errorBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.redAccent),
-    borderRadius: BorderRadius.circular(25.7),
+    borderRadius: BorderRadius.circular(10.0),
   ),
   // icon: Icon(
   //   Icons.person,

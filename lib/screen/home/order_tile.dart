@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/model/order.dart';
+import 'package:flutter_firebase/model/user.dart';
+import 'package:provider/provider.dart';
 
 class OrderTile extends StatelessWidget {
   final Order order; // we are passing the argument from the OrderList
@@ -11,6 +13,8 @@ class OrderTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Padding(padding: EdgeInsets.only(top: 8.0),
       child: Card(
         elevation: 5.0,

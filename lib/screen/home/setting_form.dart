@@ -67,11 +67,11 @@ class _SettingFormState extends State<SettingForm> {
                         ),
                       ),
                       SizedBox(
-                        height: 7.0,
+                        height: 2.0,
                       ),
 
                       TextFormField(
-                        initialValue: _currentName = userData.name,
+                        initialValue: _currentName ?? userData.name,
                         decoration: textInputDecoration.copyWith(
                           // Copy with help us to write the properties that we want in
                           labelText: 'Name',
@@ -85,7 +85,7 @@ class _SettingFormState extends State<SettingForm> {
                         onChanged: (val) => setState(() => _currentName = val),
                       ),
                       SizedBox(
-                        height: 7.0,
+                        height: 3.0,
                       ),
                       TextFormField(
                         initialValue:_currnetBrewName ?? userData.brewName,
@@ -104,14 +104,15 @@ class _SettingFormState extends State<SettingForm> {
                       ),
 
                       SizedBox(
-                        height: 7.0,
+                        height: 3.0,
                       ),
 
                       // Drop Down Form Field
                       DropdownButtonFormField(
+                        value: _currentSugar ?? userData.sugar,
                         items: sugars.map((e) {
                           return DropdownMenuItem(
-                            value: _currentSugar ?? userData.sugar,
+                            value: e,
                             child: Text('$e sugars'),
                           );
                         }).toList(),
@@ -133,7 +134,7 @@ class _SettingFormState extends State<SettingForm> {
                       Padding(
                         padding: const EdgeInsets.only(left: 30.0),
                         child: Slider(
-                            value:(_currentStrength ?? 100).toDouble(),
+                            value: (_currentStrength ?? userData.strength).toDouble(),
                             activeColor: Colors.brown[_currentStrength ?? userData.strength],
                             inactiveColor: Colors.brown[200],
                             min: 100,
@@ -145,9 +146,10 @@ class _SettingFormState extends State<SettingForm> {
 
 
                       DropdownButtonFormField(
+                        // value: _currnetCigaretteBrand ?? userData.cigaretteBrand,
                         items: cigaretteBrands.map((e) {
                           return DropdownMenuItem(
-                            value: _currnetCigaretteBrand ?? userData.cigaretteBrand,
+                            value: e,
                             child: Text('$e'),
                           );
                         }).toList(),
@@ -163,13 +165,14 @@ class _SettingFormState extends State<SettingForm> {
                             )),
                       ),
                       SizedBox(
-                        height: 7.0,
+                        height: 4.0,
                       ),
 
                       DropdownButtonFormField(
+                        value: _currentCigaretteQuantity = userData.cigaretteQuantity,
                         items: cigaretteQuantity
                             .map((e) => DropdownMenuItem(
-                            value: _currentCigaretteQuantity ?? userData.cigaretteQuantity,
+                            value: e,
                             child: Text(
                               '$e',
                               style: TextStyle(
@@ -187,7 +190,7 @@ class _SettingFormState extends State<SettingForm> {
                       ),
 
                       SizedBox(
-                        height: 5.0,
+                        height: 3.0,
                       ),
 
 
@@ -195,8 +198,8 @@ class _SettingFormState extends State<SettingForm> {
                       Padding(
                         padding: const EdgeInsets.only(left: 29.0),
                         child: Container(
-                            height: 40.0,
-                            width: 90.0,
+                            height: 20.0,
+                            width: 60.0,
                             child: GestureDetector(
                               onTap: () async {
                                if(_formkey.currentState.validate()){
