@@ -26,14 +26,8 @@ class OrderTile extends StatelessWidget {
         isThreeLine: true,
         leading: CircleAvatar(
           radius: 25.0,
-          child: Padding(
-            padding: const EdgeInsets.all(0),
-            child: Icon(
-              Icons.free_breakfast_outlined,
-              size: 25.0,
-              color: Colors.black54,
-            ),
-          ),
+          backgroundImage: AssetImage('assets/coffee_icon.png'),
+
           backgroundColor: Colors.brown[order.strength],
         ),
         trailing: Column(
