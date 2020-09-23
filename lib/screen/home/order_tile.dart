@@ -24,32 +24,37 @@ class OrderTile extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0,0 ),
       child: ListTile(
         isThreeLine: true,
+
         leading: CircleAvatar(
           radius: 25.0,
           backgroundImage: AssetImage('assets/coffee_icon.png'),
 
           backgroundColor: Colors.brown[order.strength],
         ),
+
         trailing: Column(
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 15),
-              child: Icon(
-                Icons.smoking_rooms_rounded,
-                color: Colors.red[900],
+              child: CircleAvatar(
+                radius: 25,
+                child: Padding(
+                  padding: const EdgeInsets.only(top:40 ,left: 2),
+                  child: Text('Buds:${order.cigaretteQuantity}',
+                    style: TextStyle(fontSize:11,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.3,
+                      color: Colors.black
+                    ),
+                  ),
+                ),
+
+                backgroundColor: Colors.blueGrey,
+                backgroundImage: AssetImage('assets/cigarette_box.png'),
               ),
+
             ),
-            Text(
-              order.cigaretteBrand,
-              style: TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.black54,
-                  letterSpacing: 0.1,
-              ),
-            ),
-            Text('Buds ${order.cigaretteQuantity}',
-            style: TextStyle(fontSize: 10),
-            )
+
           ],
         ),
         
@@ -64,14 +69,33 @@ class OrderTile extends StatelessWidget {
         subtitle: Padding(
           padding: const EdgeInsets.only(top: 5,left: 0),
           child: Column(
-            children: <Widget>[
-              Text(order.brewName,
-              style: TextStyle(color: Colors.white54),),
-              SizedBox(
-                height: 3.0,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Text(order.brewName,
+                  style: TextStyle(color: Colors.white54),),
+                  SizedBox(
+                    height: 3.0,
+                  ),
+                  Text('Sugars: ${order.sugar}',
+                  style: TextStyle(color: Colors.grey[400]),),
+
+
+
+                ],
               ),
-              Text('Sugars ${order.sugar}',
-              style: TextStyle(color: Colors.grey[400]),)
+            Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: Text(
+                order.cigaretteBrand,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  letterSpacing: 0.3
+                ),),
+            )
             ],
           ),
         ),
