@@ -61,57 +61,79 @@ class _RegisterState extends State<Register> {
           child: Form(
             key: _formkey,
             child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 50.0,
-                ),
+              children: [
+                Flexible(
+                  child: ListView(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 50.0,
+                      ),
 
-                //TextFormField For Email
-                TextFormField(
-                  decoration: textInputDecorationForEmail,
-                  // Input Text Color
-                  style: TextStyle(color: Colors.white),
+                      //TextFormField For Email
+                      TextFormField(
+                        decoration: textInputDecorationForEmail,
+                        // Input Text Color
+                        style: TextStyle(color: Colors.white),
 
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      // ignore: missing_return
-                      return 'Enter Your Email';
-                    }
-                    return null;
-                  },
-                  //This Function gives us the current value what user is typed.(deleting updating While typing )
-                  onChanged: (val) {
-                    setState(() {
-                      email = val;
-                    });
-                  },
-                ),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            // ignore: missing_return
+                            return 'Enter Your Email';
+                          }
+                          return null;
+                        },
+                        //This Function gives us the current value what user is typed.(deleting updating While typing )
+                        onChanged: (val) {
+                          setState(() {
+                            email = val;
+                          });
+                        },
+                      ),
 
-                SizedBox(
-                  height: 30.0,
-                ),
+                      SizedBox(
+                        height: 30.0,
+                      ),
 
-                //TextFormField FOr Password
-                TextFormField(
-                  decoration: textInputDecorationForPassword,
-                  style: TextStyle(color: Colors.white),
-                  validator: (value) {
-                    if (value.length < 6) {
-                      return 'password must be at least 6 characters long';
-                    }
-                    return null;
-                  },
-                  // ObscureText hide the inputs as ******* Like password
-                  obscureText: true,
-                  onChanged: (val) {
-                    setState(() {
-                      password = val;
-                    });
-                  },
-                ),
+                      //TextFormField FOr Password
+                      TextFormField(
+                        decoration: textInputDecorationForPassword,
+                        style: TextStyle(color: Colors.white),
+                        validator: (value) {
+                          if (value.length < 6) {
+                            return 'password must be at least 6 characters long';
+                          }
+                          return null;
+                        },
+                        // ObscureText hide the inputs as ******* Like password
+                        obscureText: true,
+                        onChanged: (val) {
+                          setState(() {
+                            password = val;
+                          });
+                        },
+                      ),
 
-                SizedBox(
-                  height: 30.0,
+                      SizedBox(
+                        height: 30.0,
+                      ),
+
+
+                      SizedBox(
+                        height: 12.0,
+                      ),
+
+                      Center(
+                        child: Text(
+                          error,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.red,
+                          ),
+
+                        ),
+                      )
+                    ],
+                  ),
                 ),
 
                 // SignUp Button
@@ -138,19 +160,6 @@ class _RegisterState extends State<Register> {
                       }
                     }},
                 ),
-
-
-                SizedBox(
-                  height: 12.0,
-                ),
-
-                Text(
-                  error,
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.red,
-                  ),
-                )
               ],
             ),
           )),

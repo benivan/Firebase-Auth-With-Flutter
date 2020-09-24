@@ -217,9 +217,10 @@ class _SettingFormState extends State<SettingForm> {
                     ),
 
                     //Update Button
+
                     RaisedButton(child:Text('Update'),
                       shape: StadiumBorder(),
-                      color: Colors.indigoAccent,
+                      color: Colors.blue,
                       splashColor: Colors.blueGrey,
 
                       onPressed: () async {

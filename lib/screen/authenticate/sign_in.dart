@@ -62,59 +62,80 @@ class _SignInState extends State<SignIn> {
             key: _formkey,
             // This Tell State of our form globally later we can validate our form using this key
             child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 50.0,
+              children: [
+                Flexible(
+                  child: ListView(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 50.0,
+                        ),
+
+                        //TextFormField For Email
+                        TextFormField(
+                          decoration: textInputDecorationForEmail,
+                          // Input Text Color
+                          style: TextStyle(color: Colors.white),
+
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              // ignore: missing_return
+                              return 'Enter Your Email';
+                            }
+                            return null;
+                          },
+                          //This Function gives us the current value what user is typed.(deleting updating While typing )
+                          onChanged: (val) {
+                            setState(() {
+                              email = val;
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+
+                        //TextFormField For Password
+                        TextFormField(
+                          decoration: textInputDecorationForPassword,
+
+                          style: TextStyle(color: Colors.white),
+                          validator: (value) {
+                            if (value.length < 6) {
+                              return 'password must be at least 6 characters long';
+                            }
+                            return null;
+                          },
+
+                          // ObscureText hide the inputs as ******* Like password
+                          obscureText: true,
+                          onChanged: (val) {
+                            setState(() {
+                              password = val;
+                            });
+                          },
+                        ),
+
+                        SizedBox(
+                          height: 30.0,
+                        ),
+
+
+
+                        SizedBox(
+                          height: 12.0,
+                        ),
+
+                        //Error Text
+                        Center(
+                          child: Text(
+                            error,
+                            style: TextStyle(color: Colors.red, fontSize: 14.0),
+                          ),
+                        )
+                      ],
+                    ),
                 ),
 
-                //TextFormField For Email
-                TextFormField(
-                  decoration: textInputDecorationForEmail,
-                  // Input Text Color
-                  style: TextStyle(color: Colors.white),
-
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      // ignore: missing_return
-                      return 'Enter Your Email';
-                    }
-                    return null;
-                  },
-                  //This Function gives us the current value what user is typed.(deleting updating While typing )
-                  onChanged: (val) {
-                    setState(() {
-                      email = val;
-                    });
-                  },
-                ),
-                SizedBox(
-                  height: 30.0,
-                ),
-
-                //TextFormField For Password
-                TextFormField(
-                  decoration: textInputDecorationForPassword,
-
-                  style: TextStyle(color: Colors.white),
-                  validator: (value) {
-                    if (value.length < 6) {
-                      return 'password must be at least 6 characters long';
-                    }
-                    return null;
-                  },
-
-                  // ObscureText hide the inputs as ******* Like password
-                  obscureText: true,
-                  onChanged: (val) {
-                    setState(() {
-                      password = val;
-                    });
-                  },
-                ),
-
-                SizedBox(
-                  height: 30.0,
-                ),
 
                 //Login Button
                 RaisedButton(
@@ -139,17 +160,8 @@ class _SignInState extends State<SignIn> {
                         });
                       }
                     }
-                },),
+                  },),
 
-                SizedBox(
-                  height: 12.0,
-                ),
-
-
-                Text(
-                  error,
-                  style: TextStyle(color: Colors.red, fontSize: 14.0),
-                )
               ],
             ),
           )),
