@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/screen/shared/loading.dart';
@@ -169,7 +170,20 @@ class _SignInState extends State<SignIn> {
                 SignInButton(Buttons.GoogleDark,
                   text: 'SingIn With Google.',
                   elevation: 2,
-                  onPressed: (){},)
+                  onPressed: ()async {
+                  setState(() {
+                    loading = true;
+                  });
+                  dynamic dynamicUser = await _auth
+                      .signInWithGoogle();
+                  if(dynamicUser == null){
+                    setState(() {
+                      loading =false;
+                      error = 'Wrong Google Account';
+                    });
+                  }
+                  },)
+
               ],
             ),
           )),

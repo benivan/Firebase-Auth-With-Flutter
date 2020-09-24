@@ -44,18 +44,18 @@ class _SettingFormState extends State<SettingForm> {
   String _currentCigaretteQuantity;
   int _currentStrength;
 
-  @override
-  void initState() {
-    super.initState();
-
-    _currentName = 'new User';
-    _currentBrewName = 'brewName';
-    _currentSugar = '1';
-    _currentStrength= 100;
-    _currentCigaretteQuantity =  '2';
-    _currentCigaretteBrand = 'Marlboro';
-
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //
+  //   _currentName = 'new User';
+  //   _currentBrewName = 'brewName';
+  //   _currentSugar = '1';
+  //   _currentStrength= 100;
+  //   _currentCigaretteQuantity =  '2';
+  //   _currentCigaretteBrand = 'Marlboro';
+  //
+  // }
 
   @override
   Widget build(BuildContext context) {

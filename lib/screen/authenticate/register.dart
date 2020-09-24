@@ -6,6 +6,7 @@ import 'package:flutter_firebase/screen/shared/loading.dart';
 import 'package:flutter_firebase/screen/shared/textInputDecorationForEmail.dart';
 import 'package:flutter_firebase/screen/shared/textInputDecorationForPassword.dart';
 import 'package:flutter_firebase/service/authservice.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class Register extends StatefulWidget {
   final Function toggleSignIn;
@@ -160,6 +161,24 @@ class _RegisterState extends State<Register> {
                       }
                     }},
                 ),
+
+
+                SignInButton(Buttons.GoogleDark,
+                  text: 'SingUp With Google.',
+                  elevation: 2,
+                  onPressed: ()async {
+                    setState(() {
+                      loading = true;
+                    });
+                    dynamic dynamicUser = await _auth
+                        .signUpWithGoogle();
+                    if(dynamicUser == null){
+                      setState(() {
+                        loading =false;
+                        error = 'Wrong Google Account';
+                      });
+                    }
+                  },)
               ],
             ),
           )),
