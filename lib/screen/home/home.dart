@@ -33,6 +33,7 @@ class Home extends StatelessWidget {
           title: Text('Home'),
           // used to add Widget In AppBar
           actions: <Widget>[
+
             FlatButton.icon(
                 onPressed: () async {
                   await _auth.signOut();
@@ -45,6 +46,8 @@ class Home extends StatelessWidget {
                   'Logout',
                   style: TextStyle(color: Colors.red),
                 )),
+
+
             FlatButton.icon(
                 onPressed: () => _showsSettingPanel(),
                 icon: Icon(Icons.settings,
@@ -53,6 +56,8 @@ class Home extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.grey
                 ),))
+
+
           ],
         ),
         body: Padding(

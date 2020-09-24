@@ -27,8 +27,11 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+
+    //Return Loading Screen While Fetching data
     return loading ? Loading():Scaffold(
       backgroundColor: Colors.grey[900],
+
       appBar: AppBar(
         backgroundColor: Colors.black54,
         elevation: 0.0,
@@ -52,6 +55,7 @@ class _SignInState extends State<SignIn> {
               ))
         ],
       ),
+
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
           child: Form(
@@ -62,6 +66,8 @@ class _SignInState extends State<SignIn> {
                 SizedBox(
                   height: 50.0,
                 ),
+
+                //TextFormField For Email
                 TextFormField(
                   decoration: textInputDecorationForEmail,
                   // Input Text Color
@@ -84,6 +90,8 @@ class _SignInState extends State<SignIn> {
                 SizedBox(
                   height: 30.0,
                 ),
+
+                //TextFormField For Password
                 TextFormField(
                   decoration: textInputDecorationForPassword,
 
@@ -103,50 +111,41 @@ class _SignInState extends State<SignIn> {
                     });
                   },
                 ),
+
                 SizedBox(
                   height: 30.0,
                 ),
 
-                //******LOGIN BUTTON******
-                Container(
-                    height: 40.0,
-                    width: 100.0,
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (_formkey.currentState.validate()) {
-                          setState(() {
-                            loading = true;
-                          });
-                          dynamic dynamicUser = await _auth
-                              .signInWithEmailAndPassword(email, password);
-                          if (dynamicUser == null) {
-                            setState(() {
-                              loading =false;
-                              error = 'Email or Password must be wrong.';
-                            });
-                          }
-                        }
-                      },
-                      child: Material(
-                        borderRadius: BorderRadius.circular(20.0),
-                        shadowColor: Colors.greenAccent,
-                        color: Colors.green,
-                        elevation: 2.0,
-                        child: Center(
-                          child: Text(
-                            'LOGIN',
-                            // Button is Only Working on text field nol all button is clickable
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Montserrat'),
-                          ),
-                        ),
-                      ),
-                    )),
+                //Login Button
+                RaisedButton(
+                  shape: StadiumBorder(),
+                  elevation: 2,
+                  color: Colors.green,
+                  splashColor: Colors.green[200],
+
+                  child: Text('LOGIN'),
+
+                  onPressed: () async {
+                    if (_formkey.currentState.validate()) {
+                      setState(() {
+                        loading = true;
+                      });
+                      dynamic dynamicUser = await _auth
+                          .signInWithEmailAndPassword(email, password);
+                      if (dynamicUser == null) {
+                        setState(() {
+                          loading =false;
+                          error = 'Email or Password must be wrong.';
+                        });
+                      }
+                    }
+                },),
+
                 SizedBox(
                   height: 12.0,
                 ),
+
+
                 Text(
                   error,
                   style: TextStyle(color: Colors.red, fontSize: 14.0),

@@ -28,6 +28,8 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+
+    //Return Loading Screen While Fetching data
     return loading ? Loading():Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
@@ -53,6 +55,7 @@ class _RegisterState extends State<Register> {
               ))
         ],
       ),
+
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
           child: Form(
@@ -62,6 +65,8 @@ class _RegisterState extends State<Register> {
                 SizedBox(
                   height: 50.0,
                 ),
+
+                //TextFormField For Email
                 TextFormField(
                   decoration: textInputDecorationForEmail,
                   // Input Text Color
@@ -81,9 +86,12 @@ class _RegisterState extends State<Register> {
                     });
                   },
                 ),
+
                 SizedBox(
                   height: 30.0,
                 ),
+
+                //TextFormField FOr Password
                 TextFormField(
                   decoration: textInputDecorationForPassword,
                   style: TextStyle(color: Colors.white),
@@ -101,49 +109,41 @@ class _RegisterState extends State<Register> {
                     });
                   },
                 ),
+
                 SizedBox(
                   height: 30.0,
                 ),
 
-                //******SIGNIN BUTTON******
-                Container(
-                    height: 40.0,
-                    width: 100.0,
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (_formkey.currentState.validate()) {
-                          setState(() {
-                            loading = true;
-                          });
-                          dynamic dynamicUser = await _auth
-                              .registerWithEmailAndPassword(email, password);
-                          if (dynamicUser == null) {
-                            setState(() {
-                              loading = false;
-                              error = 'Please provide a valid email.' ;
-                            });
-                          }
-                        }
-                      },
-                      child: Material(
-                        borderRadius: BorderRadius.circular(20.0),
-                        shadowColor: Colors.blueAccent,
-                        color: Colors.lightBlue,
-                        elevation: 2.0,
-                        child: Center(
-                          child: Text(
-                            'SIGN UP',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Montserrat'),
-                          ),
-                        ),
-                      ),
-                    )),
+                // SignUp Button
+                RaisedButton(
+                  shape: StadiumBorder(),
+                  color: Colors.blue,
+                  splashColor: Colors.blueGrey,
+                  elevation: 2,
+
+                  child:Text('SIGN UP') ,
+
+                  onPressed: () async {
+                    if (_formkey.currentState.validate()) {
+                      setState(() {
+                        loading = true;
+                      });
+                      dynamic dynamicUser = await _auth
+                          .registerWithEmailAndPassword(email, password);
+                      if (dynamicUser == null) {
+                        setState(() {
+                          loading = false;
+                          error = 'Please provide a valid email.' ;
+                        });
+                      }
+                    }},
+                ),
+
+
                 SizedBox(
                   height: 12.0,
                 ),
+
                 Text(
                   error,
                   style: TextStyle(

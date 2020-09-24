@@ -179,7 +179,8 @@ class _SettingFormState extends State<SettingForm> {
                             items: cigaretteQuantity
                                 .map((e) =>
                                     DropdownMenuItem<String>(value: e, child: Text(e)))
-                                .toList(),
+                                     .toList(),
+
                             onChanged: (val) =>
                                 setState(() => _currentCigaretteQuantity = val),
                             decoration: textInputDecoration.copyWith(
@@ -192,18 +193,19 @@ class _SettingFormState extends State<SettingForm> {
                             height: 10,
                           ),
 
-                          // DropdownButtonFormField<String>(
-                          //   value:userData.cigaretteBrand ?? _currentCigaretteBrand,
-                          //   items: cigaretteBrands
-                          //       .map((e) =>
-                          //       DropdownMenuItem<String>(value: e, child: Text(e)))
-                          //       .toList(),
-                          //   onChanged: (val) =>
-                          //       setState(() => _currentCigaretteBrand = val),
-                          //   decoration: textInputDecoration.copyWith(
-                          //       icon: Icon(Icons.alternate_email_outlined)
-                          //   ),
-                          // ),
+                          //Dropdown FOr Brands
+                          DropdownButtonFormField<String>(
+                            value: userData.cigaretteBrand ?? _currentCigaretteBrand,
+                              items:cigaretteBrands.map((e) => DropdownMenuItem(value: e,child: Text(e)))
+                              .toList(),
+
+                            onChanged: (val) =>
+                                  setState(() => _currentCigaretteBrand = val),
+                            decoration: textInputDecoration.copyWith(
+                              icon: Icon(Icons.bug_report)
+                            ),
+
+                          ),
 
 
                         ],
@@ -214,10 +216,12 @@ class _SettingFormState extends State<SettingForm> {
                       height: 10,
                     ),
 
+                    //Update Button
                     RaisedButton(child:Text('Update'),
                       shape: StadiumBorder(),
                       color: Colors.indigoAccent,
                       splashColor: Colors.blueGrey,
+
                       onPressed: () async {
                         if (_formkey.currentState.validate()) {
                           await DatabaseService(uid: user.uid)
@@ -233,7 +237,9 @@ class _SettingFormState extends State<SettingForm> {
                               .then(
                                   (value) => Navigator.of(context).pop());
                         }
+
                       },)
+
                   ],
                 ));
           } else {
