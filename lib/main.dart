@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase/model/user.dart';
 import 'package:flutter_firebase/screen/wrapper.dart';
 import 'package:flutter_firebase/service/authservice.dart';
+import 'package:flutter_stetho/flutter_stetho.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stetho.initialize();
   runApp(MyApp());
 }
 

@@ -61,7 +61,7 @@ class AutService {
         FirebaseUser user = result.user;
         // Create a new document for the user with the uid
         await DatabaseService(uid: user.uid).updateUserDetail(
-            'brewName', '0', 'new user', 100, 'Brand', '0');
+            'brewName', '0', 'new user', 100, 'Marlboro', '1');
         return _userFromFirebaseUser(user);
       } catch (e) {
         print(e.toString());

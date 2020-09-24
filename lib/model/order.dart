@@ -1,5 +1,6 @@
 
 class Order{
+  String documentId;
   String brewName;
   String sugar;
   String name;
@@ -13,7 +14,8 @@ class Order{
     this.strength,
     this.cigaretteBrand,
     this.name,
-    this.cigaretteQuantity
+    this.cigaretteQuantity,
+    this.documentId
 
 });
 }

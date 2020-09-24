@@ -38,8 +38,11 @@ class DatabaseService {
   }
   // Create a Order Object Based on QuerySnapshot
 
+
   List<Order> _orderListFromSanpshot(QuerySnapshot snapshot){
+
     return snapshot.documents.map((e) => Order(
+      documentId: e.documentID,
         name: e.data['name'] ?? '',
         brewName: e.data['brewName'] ??'',
         strength: e.data['strength'] ?? 0,

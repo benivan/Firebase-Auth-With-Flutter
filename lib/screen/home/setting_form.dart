@@ -16,7 +16,7 @@ class _SettingFormState extends State<SettingForm> {
   final _formkey = GlobalKey<FormState>();
   final List<String> sugars = ['0', '1', '2', '3', '4'];
   final List<String> cigaretteBrands = [
-    'Marlboro ',
+    'Marlboro',
     'Gold Flake',
     'Classic',
     'Camel',
@@ -44,14 +44,18 @@ class _SettingFormState extends State<SettingForm> {
   String _currentCigaretteQuantity;
   int _currentStrength;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //
-  //   // _currentCigaretteQuantity =  '2';
-  //   _currentCigaretteBrand = 'Cigarette brand';
-  //
-  // }
+  @override
+  void initState() {
+    super.initState();
+
+    _currentName = 'new User';
+    _currentBrewName = 'brewName';
+    _currentSugar = '1';
+    _currentStrength= 100;
+    _currentCigaretteQuantity =  '2';
+    _currentCigaretteBrand = 'Marlboro';
+
+  }
 
   @override
   Widget build(BuildContext context) {

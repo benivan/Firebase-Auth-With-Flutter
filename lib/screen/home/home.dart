@@ -27,6 +27,7 @@ class Home extends StatelessWidget {
       value: DatabaseService().order,
       child: Scaffold(
         backgroundColor: Colors.grey[900],
+
         appBar: AppBar(
           backgroundColor: Colors.black54,
           elevation: 0.0,
@@ -60,6 +61,7 @@ class Home extends StatelessWidget {
 
           ],
         ),
+
         body: Padding(
           padding: const EdgeInsets.only(top:8.0),
           child: OrderList(),

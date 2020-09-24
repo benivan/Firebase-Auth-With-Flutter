@@ -4,6 +4,7 @@ import 'package:flutter_firebase/screen/shared/loading.dart';
 import 'package:flutter_firebase/screen/shared/textInputDecorationForEmail.dart';
 import 'package:flutter_firebase/screen/shared/textInputDecorationForPassword.dart';
 import 'package:flutter_firebase/service/authservice.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleSignIn;
@@ -131,7 +132,10 @@ class _SignInState extends State<SignIn> {
                             error,
                             style: TextStyle(color: Colors.red, fontSize: 14.0),
                           ),
-                        )
+                        ),
+
+                        // SizedBox(height: 30,),
+
                       ],
                     ),
                 ),
@@ -162,9 +166,14 @@ class _SignInState extends State<SignIn> {
                     }
                   },),
 
+                SignInButton(Buttons.GoogleDark,
+                  text: 'SingIn With Google.',
+                  elevation: 2,
+                  onPressed: (){},)
               ],
             ),
           )),
     );
   }
 }
+
